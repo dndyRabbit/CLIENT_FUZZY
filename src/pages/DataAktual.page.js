@@ -9,9 +9,9 @@ const DataAktual = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="bg-gray-50 h-screen w-screen flex  ">
+    <div className="bg-gray-50  flex  ">
       <SideNavbar />
-      <div className=" p-10 py-5 border-red-100 border  h-screen w-screen">
+      <div className=" flex-1 ml-60 p-10 py-5 border-red-100 border  space-y-2">
         <h1 className="font-bold text-3xl">Data Aktual</h1>
 
         <TableData data={dataAktual?.dataAktual} />

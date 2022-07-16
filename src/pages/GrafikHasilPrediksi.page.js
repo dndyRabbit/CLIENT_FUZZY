@@ -28,29 +28,29 @@ const Grafik = () => {
     }),
     datasets: [
       {
-        label: "Hasil Prediksi",
+        label: "Data Aktual",
 
         data: aktualData?.map((val) => {
           return val;
         }),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: "rgb(53, 162, 235)",
       },
       {
-        label: "Data Aktual",
+        label: "Hasil Prediksi",
         data: hasilPrediksUtil?.body?.map((val) => {
           return val.nilai;
         }),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-        borderColor: "rgb(53, 162, 235)",
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
 
   return (
-    <div className="bg-gray-50 h-screen w-screen flex ">
+    <div className="bg-gray-50 flex ">
       <SideNavbar />
-      <div className=" p-10 py-5 border-red-100 border  h-screen w-screen">
+      <div className=" flex-1 ml-60 p-10 py-5 border-red-100 border  space-y-2">
         <h1 className="font-bold text-3xl">GRAFIK HASIL PREDIKSI</h1>
         <div className="grid grid-cols-1">
           <LineChart chartData={grafikDatas} width={"500px"} />

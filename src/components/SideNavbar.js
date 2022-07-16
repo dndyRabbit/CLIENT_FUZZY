@@ -5,8 +5,6 @@ import Logo from "../images/logo1.jpeg";
 import { useNavigate } from "react-router-dom";
 
 const SideNavbar = () => {
-  const navigate = useNavigate();
-
   const navLinks = [
     { label: "Beranda", path: "/" },
     { label: "Data Aktual", path: "/data_aktual" },
@@ -23,7 +21,7 @@ const SideNavbar = () => {
   };
 
   return (
-    <div className="w-60 h-full shadow-md bg-white px-2 py-5 ">
+    <div className="w-60 shadow-md bg-white px-2 py-5 fixed left-0 top-0 h-screen z-50  ">
       <Link to="/">
         <img
           src={Logo}

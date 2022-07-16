@@ -24,8 +24,8 @@ const FuzzyNavbar = () => {
   };
 
   return (
-    <div className="w-full shadow-md bg-white px-2 py-4 ">
-      <ul className="relative flex justify-end">
+    <div className="shadow-md bg-white px-2 py-4 max-w-[100%] grid  ">
+      <ul className="relative flex justify-end md:grid-cols-2">
         {navLinks.map((link, index) => (
           <li className="relative" key={index}>
             <Link to={link.path}>
