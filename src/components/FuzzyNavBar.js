@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Logo from "../images/logo1.jpeg";
-
 import { useNavigate } from "react-router-dom";
 
 const FuzzyNavbar = () => {

@@ -17,6 +17,14 @@ const Grafik = () => {
     dataAktual,
   });
 
+  const newHasilPrediksi = hasilPrediksUtil?.body?.map((value, index) => {
+    if (index === 0) {
+      value.waktu = value.waktu;
+      value.nilai = 0;
+    }
+    return value;
+  });
+
   let aktualData = [];
   dataAktual?.dataAktual?.data?.body?.map((val) => {
     aktualData.push(val?.[2]);
@@ -38,8 +46,8 @@ const Grafik = () => {
       },
       {
         label: "Hasil Prediksi",
-        data: hasilPrediksUtil?.body?.map((val) => {
-          return val.nilai;
+        data: newHasilPrediksi?.map((val) => {
+          return val?.nilai;
         }),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
@@ -50,7 +58,7 @@ const Grafik = () => {
   return (
     <div className="bg-gray-50 flex ">
       <SideNavbar />
-      <div className=" flex-1 ml-60 p-10 py-5 border-red-100 border  space-y-2">
+      <div className=" flex-1 ml-52 p-10 py-5 border-red-100 border  space-y-2">
         <h1 className="font-bold text-3xl">GRAFIK HASIL PREDIKSI</h1>
         <div className="grid grid-cols-1">
           <LineChart chartData={grafikDatas} width={"500px"} />

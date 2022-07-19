@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Logo from "../images/logo1.jpeg";
+import Logo from "../images/logo1.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -21,12 +21,12 @@ const SideNavbar = () => {
   };
 
   return (
-    <div className="w-60 shadow-md bg-white px-2 py-5 fixed left-0 top-0 h-screen z-50  ">
+    <div className="w-50 shadow-md bg-white px-2 py-5 fixed left-0 top-0 h-screen z-50  ">
       <Link to="/">
         <img
           src={Logo}
           alt=""
-          className=" w-50 self-center hover:border hover:rounded-md hover:scale-110 transition"
+          className=" w-36 self-center hover:border hover:rounded-md hover:scale-110 transition"
         />
       </Link>
       <ul className="relative">

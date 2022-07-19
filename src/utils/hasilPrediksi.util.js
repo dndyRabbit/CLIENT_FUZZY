@@ -179,7 +179,7 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
 
     let hasilPrediksiData = [];
     redevidedData?.fuzzifikasiRedevided?.map((value) => {
-      tempHasilJumlah?.map((val) => {
+      tempHasilJumlah?.map((val, index) => {
         if (value.fuzzifikasi === val.key) {
           let data = {
             waktu: value?.waktu,

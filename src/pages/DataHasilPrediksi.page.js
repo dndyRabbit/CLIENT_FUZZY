@@ -21,12 +21,23 @@ const HasilPrediksi = () => {
     dataAktual,
   });
 
+  const newHasilPrediksi = hasilPrediksUtil?.body?.map((value, index) => {
+    if (index === 0) {
+      value.waktu = value.waktu;
+      value.nilai = 0;
+    }
+    return value;
+  });
+  console.log(newHasilPrediksi);
   return (
     <div className="bg-gray-50 flex ">
       <SideNavbar />
-      <div className=" flex-1 ml-60 p-10 py-5 border-red-100 border  space-y-2">
+      <div className=" flex-1 ml-52 p-10 py-5 border-red-100 border  space-y-2">
         <h1 className="font-bold text-3xl">HASIL PREDIKSI</h1>
-        <HasilPrediksiTable data={hasilPrediksUtil} />
+        <HasilPrediksiTable
+          data={newHasilPrediksi}
+          head={hasilPrediksUtil?.head}
+        />
       </div>
     </div>
   );

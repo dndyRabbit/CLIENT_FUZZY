@@ -27,7 +27,7 @@ const PembobotanPage = () => {
   return (
     <div className="bg-gray-50 flex ">
       <SideNavbar />
-      <div className=" flex-1 ml-60 p-10 py-5 border-red-100 space-y-2">
+      <div className=" flex-1 ml-52 p-10 py-5 border-red-100 space-y-2">
         <h1 className="font-bold text-3xl">FUZZY TIME SERIES</h1>
         <h1 className=" text-xl">Pembobotan</h1>
         <FuzzyNavbar />
