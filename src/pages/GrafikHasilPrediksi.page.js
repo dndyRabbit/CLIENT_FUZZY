@@ -53,6 +53,19 @@ const Grafik = () => {
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 5000,
+            },
+          },
+        ],
+      },
+    },
   };
 
   return (

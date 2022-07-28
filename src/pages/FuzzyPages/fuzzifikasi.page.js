@@ -28,8 +28,8 @@ const FuzzificationPage = () => {
         <h1 className="font-bold text-3xl">FUZZY TIME SERIES</h1>
         <h1 className="text-xl">Fuzzifikasi</h1>
         <FuzzyNavbar />
-        <FuzzifikasiTable data={dataFuzzifikasi?.dataFuzzifikasi?.data} />
-        <h1 className="text-xl">Re-devided Fuzzifikasi</h1>
+        {/* <FuzzifikasiTable data={dataFuzzifikasi?.dataFuzzifikasi?.data} />
+        <h1 className="text-xl">Re-devided Fuzzifikasi</h1> */}
         <RedevidedFuzzfikasiTable
           data={fuzzifikasiUtil?.redevidedData?.fuzzifikasiRedevided}
           head={dataFuzzifikasi?.dataFuzzifikasi?.data}
