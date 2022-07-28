@@ -8,13 +8,12 @@ import FuzzyPage from "../pages/Fuzzy.page";
 import DataHasilPrediksi from "../pages/DataHasilPrediksi.page";
 import Grafik from "../pages/GrafikHasilPrediksi.page";
 
-import Interval from '../pages/FuzzyPages/interval.page'
-import Fuzzyset from '../pages/FuzzyPages/fuzzyset.page'
-import Fuzzification from '../pages/FuzzyPages/fuzzifikasi.page'
-import Flr from '../pages/FuzzyPages/flr.page'
-import Flrg from '../pages/FuzzyPages/flrg.page'
-import Pembobotan from '../pages/FuzzyPages/pembobotan.page'
-
+import Interval from "../pages/FuzzyPages/interval.page";
+import Fuzzyset from "../pages/FuzzyPages/fuzzyset.page";
+import Fuzzification from "../pages/FuzzyPages/fuzzifikasi.page";
+import Flr from "../pages/FuzzyPages/flr.page";
+import Flrg from "../pages/FuzzyPages/flrg.page";
+import Pembobotan from "../pages/FuzzyPages/pembobotan.page";
 
 const MainRoutes = () => {
   return (
@@ -27,7 +26,10 @@ const MainRoutes = () => {
       {/* Fuzzy routing */}
       <Route path="/fuzzy_time_series/uod_interval" element={<Interval />} />
       <Route path="/fuzzy_time_series/fuzzy_set" element={<Fuzzyset />} />
-      <Route path="/fuzzy_time_series/fuzzifikasi" element={<Fuzzification />} />
+      <Route
+        path="/fuzzy_time_series/fuzzifikasi"
+        element={<Fuzzification />}
+      />
       <Route path="/fuzzy_time_series/flr" element={<Flr />} />
       <Route path="/fuzzy_time_series/flrg" element={<Flrg />} />
       <Route path="/fuzzy_time_series/pembobotan" element={<Pembobotan />} />

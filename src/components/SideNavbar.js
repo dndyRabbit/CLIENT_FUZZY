@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const SideNavbar = () => {
   const navLinks = [
-    { label: "Beranda", path: "/" },
     { label: "Data Aktual", path: "/data_aktual" },
     { label: "Fuzzy Time Series", path: "/fuzzy_time_series/uod_interval" },
     { label: "Data Hasil Prediksi", path: "/data_hasil_prediksi" },
@@ -22,7 +21,7 @@ const SideNavbar = () => {
 
   return (
     <div className="w-50 shadow-md bg-white px-2 py-5 fixed left-0 top-0 h-screen z-50  ">
-      <Link to="/">
+      <Link to="/data_aktual">
         <img
           src={Logo}
           alt=""
