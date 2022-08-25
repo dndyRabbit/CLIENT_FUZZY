@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SideNavbar from "../../components/SideNavbar";
 import FLRTable from "../../components/FuzzyTable/flr.table";
 import FuzzyNavbar from "../../components/FuzzyNavBar";
 import { useSelector } from "react-redux";
-import FlrData from "../../utils/flrData";
-import AmountOfInterval from "../../utils/amountOfInterval";
-import Redevided from "../../utils/redevided";
+
 import { FlrUtil } from "../../utils/fuzzy.utils";
 
 const FlrPage = () => {

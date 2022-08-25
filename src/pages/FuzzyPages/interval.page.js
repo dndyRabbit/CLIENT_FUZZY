@@ -6,10 +6,6 @@ import AdditionIntervalData from "../../components/AdditionIntervalData";
 import IntervalRedevidedTable from "../../components/FuzzyTable/IntervalRedivided.table";
 
 import { useSelector, useDispatch } from "react-redux";
-import AmountOfInterval from "../../utils/amountOfInterval";
-import AmountOfInterval2 from "../../utils/amountOfInterval2";
-import Redevided from "../../utils/redevided";
-import RedevidedAmountOfInterval from "../../utils/redevidedAmountOfInterval";
 import { IntervalUtil } from "../../utils/fuzzy.utils";
 
 const IntervalPage = () => {
