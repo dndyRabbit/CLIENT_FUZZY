@@ -5,7 +5,12 @@ import FlrgDataFunction from "./flrgData";
 import Redevided from "./redevided";
 import RedevidedAmountOfInterval from "./redevidedAmountOfInterval";
 
-const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
+const HasilPrediksiUtil = ({
+  dataFuzzifikasi,
+  dataInterval,
+  dataAktual,
+  dataFlrgs,
+}) => {
   const [hasilPrediksiDatas, setHasilPrediksiDatas] = useState({
     head: ["No", "Waktu", "Nilai"],
     body: null,
@@ -13,24 +18,24 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
 
   useEffect(() => {
     // -------------------- NORMALISASI PEMBOBOTAN -----------------------//
-    const newIntervalData = AmountOfInterval(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
+    // const newIntervalData = AmountOfInterval(
+    //   dataFuzzifikasi?.dataFuzzifikasi?.data,
+    //   dataInterval?.dataInterval?.data?.body
+    // );
 
-    const redevidedData = Redevided(
-      newIntervalData,
-      dataAktual?.dataAktual?.data?.body
-    );
+    // const redevidedData = Redevided(
+    //   newIntervalData,
+    //   dataAktual?.dataAktual?.data?.body
+    // );
 
-    const flrDatas = FlrData(redevidedData?.fuzzifikasiRedevided);
-    const flrgDatas = FlrgDataFunction(
-      flrDatas?.body,
-      redevidedData?.uodInterval
-    );
+    // const flrDatas = FlrData(redevidedData?.fuzzifikasiRedevided);
+    // const flrgDatas = FlrgDataFunction(
+    //   flrDatas?.body,
+    //   redevidedData?.uodInterval
+    // );
 
     let bobotData = [];
-    flrgDatas?.body?.forEach((dataFlrg) => {
+    dataFlrgs?.body?.forEach((dataFlrg) => {
       const y = dataFlrg?.arr?.reduce((prev, next) => {
         if (next in prev) {
           prev[next]++;
@@ -43,7 +48,7 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
     });
 
     let tempKey = [];
-    flrgDatas?.body?.map((val) => {
+    dataFlrgs?.body?.map((val) => {
       tempKey?.push(val?.key);
     });
 
@@ -53,7 +58,7 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
     });
 
     let tempFlrg = [];
-    flrgDatas?.body?.map((value) => {
+    dataFlrgs?.body?.map((value) => {
       tempFlrg?.push(value?.arr);
     });
 
@@ -71,7 +76,7 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
     let pembobotanKey = [];
     tempArr?.map((value, index1) => {
       value?.map((val) => {
-        flrgDatas?.body?.map((v, index2) => {
+        dataFlrgs?.body?.map((v, index2) => {
           if (index1 === index2) {
             pembobotanKey.push([v?.key, val]);
             pembobotanDistribution.push(tempFlrg[index1].length);
@@ -100,7 +105,7 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
 
     // -------------------------------- NORMALISASI LOGIC ---------------------------//
     let distribution = [];
-    flrgDatas?.body?.forEach((value) => {
+    dataFlrgs?.body?.forEach((value) => {
       distribution.push(value?.arr?.length);
     });
 
@@ -121,22 +126,23 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
 
     //   -------------------- FUZZIFIKASI --------------------//
 
-    const redevidedIntervalData = RedevidedAmountOfInterval(
-      redevidedData?.fuzzifikasiRedevided,
-      redevidedData?.uodInterval
-    );
+    // const redevidedIntervalData = RedevidedAmountOfInterval(
+    //   redevidedData?.fuzzifikasiRedevided,
+    //   redevidedData?.uodInterval
+    // );
     // ------------------------- FUZZIFIKASI ------------------------
 
     // ---------------- INTERVAL DATA -----------------
 
     let newInterval = [];
-    redevidedIntervalData?.body?.map((value, index) => {
+    dataInterval?.dataInterval?.data?.body?.map((value, index) => {
       let data = {
         universe: `A${index + 1}`,
         median: value.median,
       };
       newInterval.push(data);
     });
+    console.log(dataInterval, "Data interval");
     //   --------------------- INTERVAL DATA ----------------------
 
     // ------------
@@ -153,8 +159,10 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
         }
       });
     });
+    console.log(normalisasiPembobotan, "Normalisasi pembobotan");
+    console.log(newInterval, "new Interval");
 
-    let tempKey2 = flrgDatas?.body?.map((value) => {
+    let tempKey2 = dataFlrgs?.body?.map((value) => {
       return { key: value.key, data: [] };
     });
 
@@ -176,9 +184,11 @@ const HasilPrediksiUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
       tempHasilJumlah.push(data);
       sum = 0;
     });
+    // console.log(tempKey2, "TEMP key");
+    // console.log(tempData, "TEMP data");
 
     let hasilPrediksiData = [];
-    redevidedData?.fuzzifikasiRedevided?.map((value) => {
+    dataFuzzifikasi?.dataFuzzifikasi?.data?.body?.map((value) => {
       tempHasilJumlah?.map((val, index) => {
         if (value.fuzzifikasi === val.key) {
           let data = {

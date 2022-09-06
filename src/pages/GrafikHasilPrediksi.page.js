@@ -7,7 +7,7 @@ import HasilPrediksiUtil from "../utils/hasilPrediksi.util";
 import { useSelector } from "react-redux";
 
 const Grafik = () => {
-  const { dataFuzzifikasi, dataInterval, dataAktual } = useSelector(
+  const { dataFuzzifikasi, dataInterval, dataAktual, dataFlrg } = useSelector(
     (state) => state
   );
 
@@ -15,6 +15,7 @@ const Grafik = () => {
     dataFuzzifikasi,
     dataInterval,
     dataAktual,
+    dataFlrgs: dataFlrg?.dataFlrg?.data,
   });
 
   const newHasilPrediksi = hasilPrediksUtil?.body?.map((value, index) => {
@@ -24,6 +25,8 @@ const Grafik = () => {
     }
     return value;
   });
+
+  console.log(hasilPrediksUtil, "Hasil prediksi");
 
   let aktualData = [];
   dataAktual?.dataAktual?.data?.body?.map((val) => {

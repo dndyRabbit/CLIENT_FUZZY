@@ -12,12 +12,12 @@ import Redevided from "../../utils/redevided";
 import { FlrgUtil } from "../../utils/fuzzy.utils";
 
 const FlrgPage = () => {
-  const { dataFuzzifikasi, dataInterval, dataAktual } = useSelector(
+  const { dataFlrg, dataFuzzifikasi, dataInterval, dataAktual } = useSelector(
     (state) => state
   );
 
-  const flrgUtil = FlrgUtil({ dataFuzzifikasi, dataInterval, dataAktual });
-  console.log(flrgUtil);
+  // const flrgUtil = FlrgUtil({ dataFuzzifikasi, dataInterval, dataAktual });
+  console.log(dataFlrg, "FLRG ");
 
   return (
     <div className="bg-gray-50 flex ">
@@ -26,7 +26,7 @@ const FlrgPage = () => {
         <h1 className="font-bold text-3xl">FUZZY TIME SERIES</h1>
         <h1 className="text-xl">FLRG</h1>
         <FuzzyNavbar />
-        <FLRGTable data={flrgUtil?.flrgData} />
+        <FLRGTable data={dataFlrg?.dataFlrg?.data} />
       </div>
     </div>
   );

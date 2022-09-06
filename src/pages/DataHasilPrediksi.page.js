@@ -11,14 +11,19 @@ import {
 import HasilPrediksiUtil from "../utils/hasilPrediksi.util";
 
 const HasilPrediksi = () => {
-  const { dataFuzzifikasi, dataInterval, dataAktual } = useSelector(
+  const { dataFuzzifikasi, dataInterval, dataAktual, dataFlrg } = useSelector(
     (state) => state
   );
+
+  const pembobotonUtil = PembobotanUtil({
+    dataFlrg: dataFlrg?.dataFlrg?.data,
+  });
 
   const hasilPrediksUtil = HasilPrediksiUtil({
     dataFuzzifikasi,
     dataInterval,
     dataAktual,
+    dataFlrgs: dataFlrg?.dataFlrg?.data,
   });
 
   const newHasilPrediksi = hasilPrediksUtil?.body?.map((value, index) => {
@@ -28,7 +33,6 @@ const HasilPrediksi = () => {
     }
     return value;
   });
-  console.log(newHasilPrediksi);
   return (
     <div className="bg-gray-50 flex ">
       <SideNavbar />

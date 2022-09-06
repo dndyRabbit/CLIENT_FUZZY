@@ -1,169 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import AmountOfInterval from "./amountOfInterval";
-import AmountOfInterval2 from "./amountOfInterval2";
-import FlrData from "./flrData";
-import Redevided from "./redevided";
-import RedevidedAmountOfInterval from "./redevidedAmountOfInterval";
-import flrgDataFunction from "./flrgData";
 
-export const IntervalUtil = ({ dataInterval, dataFuzzifikasi, dataAktual }) => {
-  const [state, setState] = useState({
-    modIntervalData: null, // to the global state
-    redevidedIntervalData: null, // to the global state
-    redevidedData: null,
-  });
-
-  useEffect(() => {
-    const newIntervalData2 = AmountOfInterval2(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
-
-    const newIntervalData = AmountOfInterval(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
-
-    const redevidedData = Redevided(
-      newIntervalData,
-      dataAktual?.dataAktual?.data?.body
-    );
-
-    const redevidedIntervalData = RedevidedAmountOfInterval(
-      redevidedData?.fuzzifikasiRedevided,
-      redevidedData?.uodInterval
-    );
-
-    setState({
-      modIntervalData: newIntervalData2,
-      redevidedIntervalData: redevidedIntervalData,
-      redevidedData: redevidedData,
-    });
-  }, []);
-
-  return state;
-};
-
-export const FuzzifikasiUtil = ({
-  dataFuzzifikasi,
-  dataInterval,
-  dataAktual,
-}) => {
-  const [state, setState] = useState({
-    redevidedIntervalData: null,
-    redevidedData: null,
-  });
-
-  useEffect(() => {
-    const newIntervalData = AmountOfInterval(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
-
-    const redevidedData = Redevided(
-      newIntervalData,
-      dataAktual?.dataAktual?.data?.body
-    );
-
-    const redevidedIntervalData = RedevidedAmountOfInterval(
-      redevidedData?.fuzzifikasiRedevided,
-      redevidedData?.uodInterval
-    );
-
-    setState({
-      redevidedIntervalData: redevidedIntervalData,
-      redevidedData: redevidedData,
-    });
-  }, []);
-
-  return state;
-};
-
-export const FlrUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
-  const [state, setState] = useState({
-    flrData: null,
-  });
-  useEffect(() => {
-    const newIntervalData = AmountOfInterval(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
-
-    const redevidedData = Redevided(
-      newIntervalData,
-      dataAktual?.dataAktual?.data?.body
-    );
-
-    const flrDatas = FlrData(redevidedData?.fuzzifikasiRedevided);
-
-    setState({
-      flrData: flrDatas,
-    });
-  }, []);
-
-  return state;
-};
-
-export const FlrgUtil = ({ dataFuzzifikasi, dataInterval, dataAktual }) => {
-  const [state, setState] = useState({
-    flrgData: null,
-  });
-
-  useEffect(() => {
-    const newIntervalData = AmountOfInterval(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
-
-    const redevidedData = Redevided(
-      newIntervalData,
-      dataAktual?.dataAktual?.data?.body
-    );
-
-    const flrDatas = FlrData(redevidedData?.fuzzifikasiRedevided);
-    const flrgDatas = flrgDataFunction(
-      flrDatas?.body,
-      redevidedData?.uodInterval
-    );
-
-    setState({
-      flrgData: flrgDatas,
-    });
-  }, []);
-
-  return state;
-};
-
-export const PembobotanUtil = ({
-  dataFuzzifikasi,
-  dataInterval,
-  dataAktual,
-}) => {
+export const PembobotanUtil = ({ dataFlrg }) => {
   const [pembobotanDatas, setPembobotanData] = useState({
     head: ["No", "Relasi", "Jumlah (Bobot)"],
     body: null,
     normalisasi: null,
   });
   useEffect(() => {
-    const newIntervalData = AmountOfInterval(
-      dataFuzzifikasi?.dataFuzzifikasi?.data,
-      dataInterval?.dataInterval?.data?.body
-    );
-
-    const redevidedData = Redevided(
-      newIntervalData,
-      dataAktual?.dataAktual?.data?.body
-    );
-
-    const flrDatas = FlrData(redevidedData?.fuzzifikasiRedevided);
-    const flrgDatas = flrgDataFunction(
-      flrDatas?.body,
-      redevidedData?.uodInterval
-    );
-
     let bobotData = [];
-    flrgDatas?.body?.forEach((dataFlrg) => {
+    dataFlrg?.body?.forEach((dataFlrg) => {
       const y = dataFlrg?.arr?.reduce((prev, next) => {
         if (next in prev) {
           prev[next]++;
@@ -176,7 +21,7 @@ export const PembobotanUtil = ({
     });
 
     let tempKey = [];
-    flrgDatas?.body?.map((val) => {
+    dataFlrg?.body?.map((val) => {
       tempKey?.push(val?.key);
     });
 
@@ -186,7 +31,7 @@ export const PembobotanUtil = ({
     });
 
     let tempFlrg = [];
-    flrgDatas?.body?.map((value) => {
+    dataFlrg?.body?.map((value) => {
       tempFlrg?.push(value?.arr);
     });
 
@@ -204,7 +49,7 @@ export const PembobotanUtil = ({
     let pembobotanKey = [];
     tempArr?.map((value, index1) => {
       value?.map((val) => {
-        flrgDatas?.body?.map((v, index2) => {
+        dataFlrg?.body?.map((v, index2) => {
           if (index1 === index2) {
             pembobotanKey.push([v?.key, val]);
             pembobotanDistribution.push(tempFlrg[index1].length);
@@ -233,7 +78,7 @@ export const PembobotanUtil = ({
 
     // -------------------------------- NORMALISASI LOGIC ---------------------------//
     let distribution = [];
-    flrgDatas?.body?.forEach((value) => {
+    dataFlrg?.body?.forEach((value) => {
       distribution.push(value?.arr?.length);
     });
 

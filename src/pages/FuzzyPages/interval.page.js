@@ -3,21 +3,23 @@ import SideNavbar from "../../components/SideNavbar";
 import FuzzyNavbar from "../../components/FuzzyNavBar";
 import IntervalTable from "../../components/FuzzyTable/Interval.table";
 import AdditionIntervalData from "../../components/AdditionIntervalData";
-import IntervalRedevidedTable from "../../components/FuzzyTable/IntervalRedivided.table";
-
 import { useSelector, useDispatch } from "react-redux";
-import { IntervalUtil } from "../../utils/fuzzy.utils";
+
+import AmountOfInterval from "../../utils/amountOfInterval";
 
 const IntervalPage = () => {
   const { dataInterval, dataFuzzifikasi, dataAktual } = useSelector(
     (state) => state
   );
 
-  const intervalData = IntervalUtil({
-    dataInterval,
-    dataFuzzifikasi,
-    dataAktual,
-  });
+  const newIntervalData = AmountOfInterval(
+    dataFuzzifikasi?.dataFuzzifikasi?.data,
+    dataInterval?.dataInterval?.data?.body
+  );
+
+  useEffect(() => {
+    console.log(newIntervalData, "new interval data");
+  }, []);
 
   return (
     <div className="bg-gray-50 flex ">
@@ -29,13 +31,7 @@ const IntervalPage = () => {
         <AdditionIntervalData data={dataInterval?.dataInterval?.data} />
         <h1 className="text-xl">UoD & Interval</h1>
         <IntervalTable
-          data={intervalData?.modIntervalData}
-          head={dataInterval?.dataInterval?.data}
-        />
-        <h1 className="text-xl mt">Re-devided UoD & Interval</h1>
-
-        <IntervalRedevidedTable
-          data={intervalData?.redevidedIntervalData}
+          data={newIntervalData}
           head={dataInterval?.dataInterval?.data}
         />
       </div>
