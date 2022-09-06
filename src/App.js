@@ -25,24 +25,6 @@ import RedevidedAmountOfInterval from "./utils/redevidedAmountOfInterval";
 import { getRedevidedFuzzifikasi } from "./redux/actions/dataRedevidedFuzzifikasi";
 
 function App() {
-  const dispatch = useDispatch();
-  const {
-    dataInterval,
-    dataFuzzifikasi,
-    dataAktual,
-    dataRedevidedInterval,
-    dataModInterval,
-  } = useSelector((state) => state);
-
-  useEffect(() => {
-    dispatch(getDataAktual());
-    dispatch(getDataInterval());
-    dispatch(getDataFuzzyset());
-    dispatch(getDataFuzzifikasi());
-    dispatch(getDataFLR());
-    dispatch(getDataFLRG());
-  }, []);
-
   return (
     <Router>
       <CustomRouter />

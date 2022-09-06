@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../images/logo1.png";
 
-import { useNavigate } from "react-router-dom";
+import { getDataAktual } from "../redux/actions/dataAktual.action";
+import { getDataInterval } from "../redux/actions/dataInterval.action";
+import { getDataFuzzifikasi } from "../redux/actions/dataFuzzifikasi.action";
+import { getDataFLR } from "../redux/actions/dataFlr.action";
+import { getDataFLRG } from "../redux/actions/dataFlrg.action";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataFuzzyset } from "../redux/actions/dataFuzzyset.action";
 
 const SideNavbar = () => {
   const navLinks = [
@@ -12,12 +18,22 @@ const SideNavbar = () => {
     { label: "Grafik Hasil Prediksi", path: "/grafik_hasil_prediksi" },
   ];
 
+  const dispatch = useDispatch();
   const pathname = useLocation();
 
   const isActive = (pn) => {
     if (pn === pathname.pathname)
       return "border-b-2 border-cyan-600 text-cyan-600";
   };
+
+  useEffect(() => {
+    dispatch(getDataAktual());
+    dispatch(getDataInterval());
+    dispatch(getDataFuzzyset());
+    dispatch(getDataFuzzifikasi());
+    dispatch(getDataFLR());
+    dispatch(getDataFLRG());
+  }, [pathname.pathname]);
 
   return (
     <div className="w-50 shadow-md bg-white px-2 py-5 fixed left-0 top-0 h-screen z-50  ">

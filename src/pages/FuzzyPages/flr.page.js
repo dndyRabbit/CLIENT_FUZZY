@@ -7,11 +7,7 @@ import { useSelector } from "react-redux";
 import { FlrUtil } from "../../utils/fuzzy.utils";
 
 const FlrPage = () => {
-  const { dataFuzzifikasi, dataInterval, dataAktual } = useSelector(
-    (state) => state
-  );
-
-  const flrUtil = FlrUtil({ dataFuzzifikasi, dataInterval, dataAktual });
+  const { dataFlr } = useSelector((state) => state);
 
   return (
     <div className="bg-gray-50 flex ">
@@ -20,7 +16,7 @@ const FlrPage = () => {
         <h1 className="font-bold text-3xl">FUZZY TIME SERIES</h1>
         <h1 className="text-xl">FLR</h1>
         <FuzzyNavbar />
-        <FLRTable data={flrUtil?.flrData} />
+        <FLRTable data={dataFlr?.dataFlr?.data} />
       </div>
     </div>
   );

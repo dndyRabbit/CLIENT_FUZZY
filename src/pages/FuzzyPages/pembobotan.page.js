@@ -3,27 +3,19 @@ import SideNavbar from "../../components/SideNavbar";
 
 import FuzzyNavbar from "../../components/FuzzyNavBar";
 import { useSelector } from "react-redux";
-import flrgDataFunction from "../../utils/flrgData";
-
-import FLRGTable from "../../components/FuzzyTable/flrg.table";
-import FlrData from "../../utils/flrData";
-import AmountOfInterval from "../../utils/amountOfInterval";
-import Redevided from "../../utils/redevided";
 import PembobotanTable from "../../components/FuzzyTable/pembobotan.table";
 import NormalisasiPembobotanTable from "../../components/FuzzyTable/normalisasiPembobotan.table";
 import { PembobotanUtil } from "../../utils/fuzzy.utils";
 
 const PembobotanPage = () => {
-  const { dataFuzzifikasi, dataInterval, dataAktual } = useSelector(
-    (state) => state
-  );
+  const { dataFlrg } = useSelector((state) => state);
 
   const pembobotonUtil = PembobotanUtil({
-    dataFuzzifikasi,
-    dataInterval,
-    dataAktual,
+    dataFlrg: dataFlrg?.dataFlrg?.data,
   });
-
+  useEffect(() => {
+    console.log(pembobotonUtil, "FLRG DATA");
+  }, []);
   return (
     <div className="bg-gray-50 flex ">
       <SideNavbar />

@@ -8,29 +8,19 @@ import { useSelector } from "react-redux";
 import { IntervalUtil } from "../../utils/fuzzy.utils";
 
 const FuzzysetPage = () => {
-  const { dataInterval, dataFuzzifikasi, dataAktual } = useSelector(
-    (state) => state
-  );
+  const { dataFuzzyset } = useSelector((state) => state);
 
-  const intervalData = IntervalUtil({
-    dataInterval,
-    dataFuzzifikasi,
-    dataAktual,
-  });
+  // const newData = intervalData?.redevidedIntervalData?.body?.map(
+  //   (value, index) => {
+  //     return {
+  //       universe: `A${++index}`,
+  //       batasBawah: value.batasBawah,
+  //       batasAtas: value.batasAtas,
+  //     };
+  //   }
+  // );
 
-  console.log(intervalData?.redevidedIntervalData?.body);
-
-  const newData = intervalData?.redevidedIntervalData?.body?.map(
-    (value, index) => {
-      return {
-        universe: `A${++index}`,
-        batasBawah: value.batasBawah,
-        batasAtas: value.batasAtas,
-      };
-    }
-  );
-
-  // console.log(newData, "adasdasdas");
+  console.log(dataFuzzyset?.dataFuzzyset?.data, "FUZZYSET DATA");
 
   return (
     <div className="bg-gray-50 flex ">
@@ -39,7 +29,7 @@ const FuzzysetPage = () => {
         <h1 className="font-bold text-3xl">FUZZY TIME SERIES</h1>
         <h1 className="text-xl">Fuzzyset</h1>
         <FuzzyNavbar />
-        <FuzzysetTable data={newData} />
+        <FuzzysetTable data={dataFuzzyset?.dataFuzzyset?.data} />
       </div>
     </div>
   );

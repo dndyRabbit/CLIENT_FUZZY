@@ -11,21 +11,16 @@ const FuzzysetTable = ({ data }) => {
             <th scope="col" className="px-6 py-3">
               NO
             </th>
-            <th scope="col" className="px-6 py-3">
-              UNIVERSE
-            </th>
-
-            <th scope="col" className="px-6 py-3">
-              BATAS BAWAH
-            </th>
-            <th scope="col" className="px-6 py-3">
-              BATAS ATAS
-            </th>
+            {data?.head?.map((value, index) => (
+              <th scope="col" className="px-6 py-3">
+                {value}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {/* Looping dari sebuat data berbentuk Array yang telah dibuat */}
-          {data?.map((value, index) => (
+          {data?.body.map((value, index) => (
             <tr
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               key={index}
